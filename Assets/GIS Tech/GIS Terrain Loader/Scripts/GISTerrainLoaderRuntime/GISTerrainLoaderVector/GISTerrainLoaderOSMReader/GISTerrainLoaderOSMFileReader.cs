@@ -329,7 +329,7 @@ namespace GISTech.GISTerrainLoader
         {
             if (property.PropertyType == typeof(double))
             {
-                property.SetValue(instance, double.Parse(value.Replace(".", ",")));
+                property.SetValue(instance, double.Parse(value));
             }
             else if (property.PropertyType == typeof(string))
             {

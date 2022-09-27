@@ -91,17 +91,20 @@ namespace GISTech.GISTerrainLoader
                         spacePoints[p] = WSPos;
                     }
 
-                    float m_TreeDensity = 100 - tree_SO.TreeDensity;
-
-                    Rect rect = GISTerrainLoaderExtensions.GetRectFromPoints(spacePoints.ToList());
-                    int lx = Mathf.RoundToInt(rect.width / m_TreeDensity);
-                    int ly = Mathf.RoundToInt(rect.height / m_TreeDensity);
-
-                    if (lx > 0 && ly > 0)
+                    if (spacePoints.Length >= 2)
                     {
-                        GenerateTerrainsTrees(tree_SO, container, lx, ly, rect, spacePoints.ToList());
+                        float m_TreeDensity = 100 - tree_SO.TreeDensity;
+
+                        Rect rect = GISTerrainLoaderExtensions.GetRectFromPoints(spacePoints.ToList());
+                        int lx = Mathf.RoundToInt(rect.width / m_TreeDensity);
+                        int ly = Mathf.RoundToInt(rect.height / m_TreeDensity);
+
+                        if (lx > 0 && ly > 0)
+                        {
+                            GenerateTerrainsTrees(tree_SO, container, lx, ly, rect, spacePoints.ToList());
+                        }
+                        continue;
                     }
-                    continue;
 
                 }
 
