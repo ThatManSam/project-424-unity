@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 492470}
   - component: {fileID: 6555700}
-  m_Layer: 0
+  - component: {fileID: -5353097259103494261}
+  m_Layer: 11
   m_Name: painted_barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.88824815, y: 1.699851, z: 3.1965337}
   m_Center: {x: 0.0027451515, y: 0.84450173, z: -0.0022411342}
+--- !u!114 &-5353097259103494261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &126890
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +69,7 @@ GameObject:
   - component: {fileID: 449462}
   - component: {fileID: 3371694}
   - component: {fileID: 2310080}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

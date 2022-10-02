@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440974}
   - component: {fileID: 6457936}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 459032}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: crash_barrier_colon (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 461826}
   - component: {fileID: 3333386}
   - component: {fileID: 2332966}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 454786}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: crash_barrier_colon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 463266}
   - component: {fileID: 3393700}
   - component: {fileID: 2383046}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423680}
-  m_Layer: 0
+  - component: {fileID: -3256324317071338622}
+  m_Layer: 11
   m_Name: crash_barrier_turn_one
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +304,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3256324317071338622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &197920
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +327,7 @@ GameObject:
   - component: {fileID: 496764}
   - component: {fileID: 3344872}
   - component: {fileID: 2367796}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

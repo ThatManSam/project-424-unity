@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 431246}
   - component: {fileID: 3375472}
   - component: {fileID: 2371278}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 439104}
   - component: {fileID: 6596656}
-  m_Layer: 0
+  - component: {fileID: -231930356282544957}
+  m_Layer: 11
   m_Name: crash_barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +127,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6595024, y: 1.1069453, z: 2.4483614}
   m_Center: {x: -0.16196382, y: 0.5556594, z: -0.78705287}
+--- !u!114 &-231930356282544957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

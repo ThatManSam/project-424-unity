@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 451412}
   - component: {fileID: 6552904}
-  m_Layer: 0
+  - component: {fileID: -5870635718944609626}
+  m_Layer: 11
   m_Name: wall_barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.70775944, y: 3.703396, z: 1.7161899}
   m_Center: {x: 0.0011975875, y: 1.8494638, z: -0.0009694111}
+--- !u!114 &-5870635718944609626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &170056
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +69,7 @@ GameObject:
   - component: {fileID: 467656}
   - component: {fileID: 3369330}
   - component: {fileID: 2387516}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
