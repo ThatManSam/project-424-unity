@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using UnityEngine;
+using System;
 
 /**
  * FOR DEVELOPING
@@ -122,6 +123,27 @@ public class DataFetch : MonoBehaviour
         double co_south = -37.7910;
         double co_east = 175.2760;
         double co_west = 175.2600;
+
+        downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
+    }
+
+
+    // Test location used for development
+    public void downloadOSMAndLINZFromCSV(string csv)
+    {
+        string[] ordinates = csv.Split(',');
+        if (ordinates.Length < 4)
+        {
+            Debug.Log(string.Format("CSV input too short: {0}", ordinates.Length));
+            throw new JsonException(string.Format("CSV input too short: {0}", ordinates.Length));
+        }
+
+        // CSV input is West, South, East, North
+
+        double co_north = Double.Parse(ordinates[3]);
+        double co_south = Double.Parse(ordinates[1]);
+        double co_east = Double.Parse(ordinates[2]);
+        double co_west = Double.Parse(ordinates[0]);
 
         downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
     }
