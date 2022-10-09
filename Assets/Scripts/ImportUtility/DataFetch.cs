@@ -127,6 +127,27 @@ public class DataFetch : MonoBehaviour
     }
 
 
+    // Test location used for development
+    public void downloadOSMAndLINZFromCSV(string csv)
+    {
+        string[] ordinates = csv.Split(',');
+        if (ordinates.Length < 4)
+        {
+            Debug.Log(string.Format("CSV input too short: {0}", ordinates.Length));
+            throw new JsonException(string.Format("CSV input too short: {0}", ordinates.Length));
+        }
+
+        // CSV input is West, South, East, North
+
+        double co_north = ordinates[3];
+        double co_south = ordinates[1];
+        double co_east = ordinates[2];
+        double co_west = ordinates[0];
+
+        downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
+    }
+
+
     public void downloadOSMAndLINZ(double north, double south, double east, double west)
     {
         double co_north = north;
