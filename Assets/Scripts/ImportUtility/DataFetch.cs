@@ -140,10 +140,17 @@ public class DataFetch : MonoBehaviour
 
         // CSV input is West, South, East, North
 
+<<<<<<< HEAD
         double co_north = Double.Parse(ordinates[3]);
         double co_south = Double.Parse(ordinates[1]);
         double co_east = Double.Parse(ordinates[2]);
         double co_west = Double.Parse(ordinates[0]);
+=======
+        double co_north = ordinates[3];
+        double co_south = ordinates[1];
+        double co_east = ordinates[2];
+        double co_west = ordinates[0];
+>>>>>>> 392cf048d2700463ef573e0bb905497eb56021d3
 
         downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
     }
