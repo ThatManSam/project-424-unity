@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: cycleway
   m_EditorClassIdentifier: 
   RoadType: cycleway
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 27483ce74f2ceaf4faa71460d684d6cd, type: 2}
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: 26f267768cffeb14595d762eaaec2692, type: 2}
   RoadWidth: 1
   RoadColor:
     serializedVersion: 2

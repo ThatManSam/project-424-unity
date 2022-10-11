@@ -22,6 +22,7 @@ namespace GISTech.GISTerrainLoader
 
         public static GameObject CreateRoad(GISTerrainLoaderRoad m_road, TerrainContainerObject m_container, bool m_Runtime=false)
         {
+
             container = m_container;
 
             GameObject Road = null;
@@ -70,8 +71,8 @@ namespace GISTech.GISTerrainLoader
 
             roadType.roadWidth = m_road.width;
             roadType.roadMaterial = m_road.material;
-
-            Eroad = roadNetwork.CreateRoad(m_road.highwayType.ToString(), roadType, m_road.Points);
+ 
+            Eroad = roadNetwork.CreateRoad(roadType.roadTypeName, roadType, m_road.Points);
             Eroad.SnapToTerrain(true);
             Eroad.gameObject.isStatic = false;
 
@@ -125,7 +126,7 @@ namespace GISTech.GISTerrainLoader
             roadType.roadWidth = m_road.width;
             roadType.roadMaterial = m_road.material;
 
-            Eroad = roadNetwork.CreateRoad(m_road.highwayType.ToString(), roadType, m_road.Points);
+            Eroad = roadNetwork.CreateRoad(roadType.roadTypeName, roadType, m_road.Points);
             Eroad.SnapToTerrain(true);
             Eroad.gameObject.isStatic = false;
 

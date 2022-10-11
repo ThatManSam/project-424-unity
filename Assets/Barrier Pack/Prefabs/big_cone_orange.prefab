@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 410818}
   - component: {fileID: 3351880}
   - component: {fileID: 2381478}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 411752}
   - component: {fileID: 6541634}
-  m_Layer: 0
+  - component: {fileID: 7343088065010609839}
+  m_Layer: 11
   m_Name: big_cone_orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +127,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.933596, y: 1.3577733, z: 0.94367313}
   m_Center: {x: -0.004899502, y: 0.6804414, z: -0.02912581}
+--- !u!114 &7343088065010609839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

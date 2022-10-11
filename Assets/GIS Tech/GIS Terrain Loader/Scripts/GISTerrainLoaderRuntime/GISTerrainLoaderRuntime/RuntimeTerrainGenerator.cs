@@ -1158,6 +1158,7 @@ namespace GISTech.GISTerrainLoader
                 catch (Exception ex)
                 {
                     Debug.LogError("Error while generating terrain : " + ex.Message);
+                    Debug.LogError("Stack Trace: " + ex);
                     OnError();
                     yield break;
                 }

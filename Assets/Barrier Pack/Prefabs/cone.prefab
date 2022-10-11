@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 458638}
   - component: {fileID: 3308342}
   - component: {fileID: 2348774}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 461710}
   - component: {fileID: 6590756}
-  m_Layer: 0
+  - component: {fileID: 9204437034767901068}
+  m_Layer: 11
   m_Name: cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +127,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6421306, y: 0.8317969, z: 0.64451444}
   m_Center: {x: 0.00017645955, y: 0.41551042, z: -0.00018662214}
+--- !u!114 &9204437034767901068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

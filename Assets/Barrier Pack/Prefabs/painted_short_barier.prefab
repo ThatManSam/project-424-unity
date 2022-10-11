@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 449972}
   - component: {fileID: 6562640}
-  m_Layer: 0
+  - component: {fileID: -3742260218071088293}
+  m_Layer: 11
   m_Name: painted_short_barier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7953217, y: 1.2165236, z: 4.750967}
   m_Center: {x: -0.0016309832, y: 0.6048188, z: -0.0017132966}
+--- !u!114 &-3742260218071088293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161756
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +69,7 @@ GameObject:
   - component: {fileID: 438542}
   - component: {fileID: 3328790}
   - component: {fileID: 2375664}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

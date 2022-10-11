@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 493056}
   - component: {fileID: 6512600}
-  m_Layer: 0
+  - component: {fileID: 4401716249505603460}
+  m_Layer: 11
   m_Name: crash_barrier_cap_two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.83508533, y: 0.539186, z: 0.6217504}
   m_Center: {x: 0.00045444083, y: 0.00072813034, z: -0.0042701247}
+--- !u!114 &4401716249505603460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4a47ce3bf0c904e89952030750d457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &158928
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +69,7 @@ GameObject:
   - component: {fileID: 492080}
   - component: {fileID: 3344134}
   - component: {fileID: 2381862}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

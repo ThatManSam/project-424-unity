@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: trunk
   m_EditorClassIdentifier: 
   RoadType: trunk
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 0a73308567dff6645b71e07b5db5465d, type: 2}
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: ea127e7e01701b44bb49a3b32fb296a2, type: 2}
   RoadWidth: 0.9
   RoadColor:
     serializedVersion: 2

@@ -6615,11 +6615,11 @@ MonoBehaviour:
   UseStartPosition: 0
   StartPosition: {x: 0, y: 0, z: 0}
   StartRotation: {x: 0, y: 0, z: 0}
-  panSpeed: 50
+  panSpeed: 100
   zoomSpeed: 100
   rotationSpeed: 50
-  mousePanMultiplier: 0.1
-  mouseRotationMultiplier: 0.07
+  mousePanMultiplier: 0.5
+  mouseRotationMultiplier: 0.5
   mouseZoomMultiplier: 30
   MinMaxZoom: {x: 40, y: 6000}
   smoothingFactor: 0.1
