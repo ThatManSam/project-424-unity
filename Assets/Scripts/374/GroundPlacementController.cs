@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Adapted from
 // https://www.youtube.com/watch?v=YI6F1x4pzpg&t=0s
@@ -22,7 +23,7 @@ public class GroundPlacementController : MonoBehaviour
 
     private KeyCode rotateKey = KeyCode.R;
 
-    public bool followTerrainAngle = false;
+    private bool followTerrainAngle = false;
 
     private GameObject currentPlaceableObject;
 
@@ -83,6 +84,13 @@ public class GroundPlacementController : MonoBehaviour
             ReleaseIfClicked();
             CancelPlacement();
         }
+
+        // Update if prefab should follow terrain angle
+        if (this.GetComponentInChildren<Toggle>() != null)
+        {
+            followTerrainAngle = this.GetComponentInChildren<Toggle>().isOn;
+        }
+        else followTerrainAngle = false;
 
     }
 

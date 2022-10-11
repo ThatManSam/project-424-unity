@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: residential
   m_EditorClassIdentifier: 
   RoadType: residential
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 91f576869fd9ff44db4a6fbe4e70709b, type: 2}
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: 3a639e16325b52742b7a2205a410f98a, type: 2}
   RoadWidth: 3
   RoadColor:
     serializedVersion: 2

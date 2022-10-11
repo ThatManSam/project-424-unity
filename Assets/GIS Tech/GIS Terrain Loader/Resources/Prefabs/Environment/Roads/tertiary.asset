@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: tertiary
   m_EditorClassIdentifier: 
   RoadType: tertiary
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 0828f63e15095e946bbefadacd5203e2, type: 2}
-  RoadWidth: 5
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: 173d7f69775703841bd51364baef9e95, type: 2}
+  RoadWidth: 8
   RoadColor:
     serializedVersion: 2
     rgba: 4278239487

@@ -34,12 +34,10 @@ namespace GISTech.GISTerrainLoader
             {
 #if EASYROADS || EASYROADS3D
             GISTerrainLoaderEasyRoadGenerator.DestroyRoads();
+                GenerateRoades(container, GeoData);
 #endif
             }
-            else
-            {
-                GenerateRoades(container, GeoData);
-            }
+ 
 
             if (m_roadType == RoadGenerationType.EasyRoad3D)
             {
@@ -54,7 +52,7 @@ namespace GISTech.GISTerrainLoader
         {
             if (GeoData.GeoRoads.Count != 0)
             {
-
+          
                 GameObject highways = null;
 
                 if (Container.transform.Find("highways") == null)
@@ -114,7 +112,8 @@ namespace GISTech.GISTerrainLoader
                     if (EasyRoadBaseModelExist())
                     {
 
-#if EASYROADS || EASYROADS3D
+#if EASYROADS || EASYROADS3D            
+        
                         m_road = GISTerrainLoaderEasyRoadGenerator.CreateRoad(road, container, IsRuntime);
 #endif
                     }
@@ -251,8 +250,6 @@ namespace GISTech.GISTerrainLoader
                         {
 #if EASYROADS || EASYROADS3D
                                 m_road = GISTerrainLoaderEasyRoadGenerator.CreateRoad(road, container, IsRuntime);
-                                m_road.name = shapeObj.Tag + "_" + (i + 1);
-                                data.Generated = true;
 #endif
                         }
                         else

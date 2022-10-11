@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: path
   m_EditorClassIdentifier: 
   RoadType: path
-  MaterialType: 0
+  MaterialType: 1
   Roadmaterial: {fileID: 2100000, guid: 0a969cbd05fdc884d9b1bfdede04b9a3, type: 2}
   RoadWidth: 1
   RoadColor:

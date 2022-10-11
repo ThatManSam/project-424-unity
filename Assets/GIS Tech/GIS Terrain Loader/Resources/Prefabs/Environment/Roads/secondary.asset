@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: secondary
   m_EditorClassIdentifier: 
   RoadType: secondary
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 648064d5598f9cb489a1a41654556b5f, type: 2}
-  RoadWidth: 4
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: 65a4c26e8b9e36d479fbecfb101ac3b8, type: 2}
+  RoadWidth: 8
   RoadColor:
     serializedVersion: 2
     rgba: 4278255432

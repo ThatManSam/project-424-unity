@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: primary
   m_EditorClassIdentifier: 
   RoadType: primary
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 8354ff98138d467419b2a2de04ba09cb, type: 2}
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: 77909f13ed5b2c3479a72bbd4bbb7c47, type: 2}
   RoadWidth: 5
   RoadColor:
     serializedVersion: 2

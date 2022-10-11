@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingType: school
   roofType: 1
-  height: 25
+  height: 16
   wall: {fileID: 2100000, guid: ebb60c0069526df46a876aa3ab61fa9c, type: 2}
   roof: {fileID: 2100000, guid: 4d85c74144f2d0340952b3069dac16fc, type: 2}
   WallTextureTiling: {x: 3, y: 1.5}

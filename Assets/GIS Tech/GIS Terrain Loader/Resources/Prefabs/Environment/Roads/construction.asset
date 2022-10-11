@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: construction
   m_EditorClassIdentifier: 
   RoadType: construction
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: d09c616b91580a84f8723b545486d6cf, type: 2}
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: a747fca7eb9c5814f8a86ec53d8da506, type: 2}
   RoadWidth: 0.01
   RoadColor:
     serializedVersion: 2

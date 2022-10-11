@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: motorway
   m_EditorClassIdentifier: 
   RoadType: motorway
-  MaterialType: 0
-  Roadmaterial: {fileID: 2100000, guid: 634f9f9082bf10a459256c8e0d041d98, type: 2}
+  MaterialType: 1
+  Roadmaterial: {fileID: 2100000, guid: 560592746f9ef8e4ea9fa94634885cc0, type: 2}
   RoadWidth: 10
   RoadColor:
     serializedVersion: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: pedestrian
   m_EditorClassIdentifier: 
   RoadType: pedestrian
-  MaterialType: 0
+  MaterialType: 1
   Roadmaterial: {fileID: 2100000, guid: 0a969cbd05fdc884d9b1bfdede04b9a3, type: 2}
   RoadWidth: 2.8
   RoadColor:
