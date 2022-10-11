@@ -6,10 +6,10 @@ public class LoaderToEditor : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject GISLoaderUI;
+    private GameObject LoaderUI;
 
     [SerializeField]
-    private GameObject GISLoaderCamera;
+    private GameObject LoaderCamera;
 
     [SerializeField]
     private GameObject EditorUI;
@@ -19,21 +19,21 @@ public class LoaderToEditor : MonoBehaviour
 
     public void Click()
     {
-        GISLoaderUI.SetActive(false);
-        GISLoaderCamera.SetActive(false);
+        LoaderUI.SetActive(false);
+        LoaderCamera.SetActive(false);
         EditorCamera.SetActive(true);
-        EditorCamera.transform.position = GISLoaderCamera.transform.position;
-        EditorCamera.transform.rotation = GISLoaderCamera.transform.rotation;
+        //EditorCamera.transform.position = GISLoaderCamera.transform.position;
+        //EditorCamera.transform.rotation = GISLoaderCamera.transform.rotation;
         EditorUI.SetActive(true);
 
 
 
-        GameObject roads = GameObject.Find("Terrains");
-        if(roads != null)
-        {
-            Debug.Log("Roads found");
-            ChangeLayer(roads, LayerMask.NameToLayer("Roads"));
-        }
+        //GameObject roads = GameObject.Find("Terrains");
+        //if(roads != null)
+        //{
+        //    Debug.Log("Roads found");
+        //    ChangeLayer(roads, LayerMask.NameToLayer("Roads"));
+        //}
     }
 
     private void ChangeLayer(GameObject root, int layer)

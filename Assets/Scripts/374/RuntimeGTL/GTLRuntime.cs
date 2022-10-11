@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace GISTech.GISTerrainLoader
 {
-    public class GTLUI : MonoBehaviour
+    public class GTLRuntime : MonoBehaviour
     {
 
         // path of elevation file
@@ -51,7 +51,8 @@ namespace GISTech.GISTerrainLoader
 
             RuntimeTerrainGenerator.OnProgress += OnGeneratingTerrainProg;
 
-            terrainPathText = "E:\\Unity\\project-424-unity\\Assets\\GIS Tech\\GIS Terrain Loader\\Resources\\GIS Terrains\\newHamV8Track\\v8.tif";
+            //terrainPathText = "E:\\Unity\\project-424-unity\\Assets\\GIS Tech\\GIS Terrain Loader\\Resources\\GIS Terrains\\newHamV8Track\\v8.tif";
+            terrainPathText = "";
 
             Debug.Log("Path: " + terrainPathText);
 
@@ -129,6 +130,7 @@ namespace GISTech.GISTerrainLoader
 
         private void OnGeneratingTerrainProg(string phase, float progress)
         {
+
             if (!phase.Equals("Finalization"))
             {
                 GenerationProgress.transform.parent.gameObject.SetActive(true);

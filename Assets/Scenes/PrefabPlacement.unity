@@ -1144,7 +1144,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.2, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1296,10 +1296,10 @@ RectTransform:
   m_Father: {fileID: 672331013}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 219.85896, y: -10}
-  m_SizeDelta: {x: 119.92307, y: 20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &159428073
 MonoBehaviour:
@@ -1868,14 +1868,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 160334, guid: 56ae742cef70a134b819fe5b677450d0, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &225988962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,14 +1924,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 108544, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &225988965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2138,8 +2122,6 @@ MonoBehaviour:
   mouseHorizontalAxisName: Mouse X
   mouseVerticalAxisName: Mouse Y
   scrollAxisName: Mouse ScrollWheel
-  _camera: {fileID: 0}
-  scrollEnabled: 1
 --- !u!1 &255630749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,14 +2486,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 181634, guid: fba9017539f784944a12e4d8cfc1483f, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &293703529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3527,14 +3501,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 103214, guid: 89871ece83329ed448900444b085cad9, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &416641545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3779,14 +3745,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 185736, guid: 1cc2ed13481fc3446ac381dd171654b2, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &462844234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4696,14 +4654,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 165212, guid: fbc74bc83918fc94182a214fc2db1395, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &563276483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,7 +4752,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PerspectiveCamera: {fileID: 232417073}
-  cm: {fileID: 0}
 --- !u!1 &591520253
 GameObject:
   m_ObjectHideFlags: 0
@@ -5561,14 +5510,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 114418, guid: 956bd2acf7aae244dac8fc20cf57858d, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &666956076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5682,7 +5623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &672331013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5701,10 +5642,10 @@ RectTransform:
   m_Father: {fileID: 1251653995}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 155.9, y: -236.53}
-  m_SizeDelta: {x: 311.8, y: 20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &672331014
 MonoBehaviour:
@@ -5844,8 +5785,6 @@ MonoBehaviour:
   enableRoads: 0
   enableBuildings: 0
   GenerateTerrainBtn: {fileID: 591520256}
-  RuntimeGenerator: {fileID: 0}
-  RuntimePrefs: {fileID: 0}
   GenerationProgress: {fileID: 159428074}
   Phasename: {fileID: 1156467284}
   progressValue: {fileID: 1187382015}
@@ -5992,14 +5931,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 128852, guid: a2bef607e5bbd014d8d69755562c0d35, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &712578786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6586,7 +6517,6 @@ MonoBehaviour:
   - {fileID: 396081189}
   - {fileID: 1961419436}
   objectText: {fileID: 1632647200}
-  pos: 0
 --- !u!114 &766907720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6618,22 +6548,7 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   MoveText: {fileID: 1159760170}
   rotateKey: 114
-  currentSelection: {fileID: 0}
-  currentHierarchyItem: {fileID: 0}
-  selectedColor:
-    r: 0.5707547
-    g: 0.58769864
-    b: 1
-    a: 0.39607844
-  startcolor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  followTerrainAngle: 0
-  mouseRotation: 0
-  moving: 0
-  manualSelection: 0
+  selectedColor: {r: 0.5707547, g: 0.58769864, b: 1, a: 0.39607844}
 --- !u!1 &769539536
 GameObject:
   m_ObjectHideFlags: 0
@@ -7823,14 +7738,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 193742, guid: 9c74caa742791864f9c678287121e6c9, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &850480205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9751,14 +9658,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 114418, guid: 8b2d47fdc2e25ac4f9721480a68bbefa, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &1090693406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10118,14 +10017,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 150262, guid: e0c9e7b86067ab64dacba4d674191ebb, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &1138993732
 GameObject:
   m_ObjectHideFlags: 0
@@ -10325,10 +10216,10 @@ RectTransform:
   m_Father: {fileID: 672331013}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2}
-  m_SizeDelta: {x: 159.89743, y: 16}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1156467283
 MonoBehaviour:
@@ -10782,10 +10673,10 @@ RectTransform:
   m_Father: {fileID: 672331013}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 279.8205, y: -2}
-  m_SizeDelta: {x: 31.979486, y: 16}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1187382014
 MonoBehaviour:
@@ -12752,14 +12643,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 199470, guid: ec78ebca7517fb745a45a931cb06d2bd, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &1457165776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13286,14 +13169,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &1513552018
 GameObject:
   m_ObjectHideFlags: 0
@@ -14337,14 +14212,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 120678, guid: 8a553ddeee5519c42beedf0a1b69da88, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &1682836085
 GameObject:
   m_ObjectHideFlags: 0
@@ -14513,7 +14380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PerspectiveCamera: {fileID: 232417073}
-  cm: {fileID: 0}
 --- !u!1 &1702223726
 GameObject:
   m_ObjectHideFlags: 0
@@ -14803,14 +14669,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 174412, guid: d91011873a48699488e1c1b9b86925e5, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &1754251975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15759,14 +15617,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 148854, guid: 4adbbae4831a7774ea0645c19218c458, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &1872936548
 GameObject:
   m_ObjectHideFlags: 0
@@ -16694,14 +16544,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 114418, guid: be878d9ea17907f4a8068678a5ce7908, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!114 &2007899259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17217,14 +17059,6 @@ MonoBehaviour:
   PerspectiveCamera: {fileID: 232417073}
   prefab: {fileID: 117884, guid: b8c83c417104d75459226dd80248bfe2, type: 3}
   cancelPlacementKey: 27
-  rotateKey: 114
-  followTerrainAngle: 0
-  currentPlaceableObject: {fileID: 0}
-  mouseRotation: 0
-  count: 0
-  hm: {fileID: 0}
-  cm: {fileID: 0}
-  sm: {fileID: 0}
 --- !u!1 &2061057688
 GameObject:
   m_ObjectHideFlags: 0
