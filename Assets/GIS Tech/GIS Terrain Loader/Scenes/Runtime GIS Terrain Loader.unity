@@ -19784,7 +19784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 155.9, y: -324.38556}
+  m_AnchoredPosition: {x: 155.9, y: -286.53}
   m_SizeDelta: {x: 311.8, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365282164
@@ -21242,7 +21242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc620cd478547cc45b801fb196429275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastTab: 5
+  lastTab: 1
   Projection: 0
   TerrainElevation: 0
   tiffElevationSource: 0
@@ -21252,8 +21252,8 @@ MonoBehaviour:
   UnderWater: 0
   TerrainFixOption: 0
   TerrainMaxMinElevation: {x: 0, y: 0}
-  TerrainLayerSet: 0
-  TerrainLayer: 0
+  TerrainLayerSet: 1
+  TerrainLayer: 10
   readingMode: 0
   ShowCoordinates: 0
   SubRegionUpperLeftCoordiante:

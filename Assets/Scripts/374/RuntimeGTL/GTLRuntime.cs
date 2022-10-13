@@ -42,6 +42,10 @@ namespace GISTech.GISTerrainLoader
         public Text Phasename;
         public Text progressValue;
 
+        // Buttons
+        public GameObject nextButton;
+        public GameObject backButton;
+
         // Detail slider
         public Slider detailSlider;
 
@@ -51,14 +55,16 @@ namespace GISTech.GISTerrainLoader
 
             RuntimeTerrainGenerator.OnProgress += OnGeneratingTerrainProg;
 
-            //terrainPathText = "E:\\Unity\\project-424-unity\\Assets\\GIS Tech\\GIS Terrain Loader\\Resources\\GIS Terrains\\newHamV8Track\\v8.tif";
-            terrainPathText = "";
+            terrainPathText = "E:\\Unity\\project-424-unity\\Assets\\GIS Tech\\GIS Terrain Loader\\Resources\\GIS Terrains\\newHamV8Track\\v8.tif";
+            //terrainPathText = "";
 
             Debug.Log("Path: " + terrainPathText);
 
             //GenerateTerrainBtn.onClick.AddListener(OnGenerateTerrainbtnClicked);
 
             RuntimePrefs = GISTerrainLoaderRuntimePrefs.Get;
+            RuntimePrefs.TerrainLayerSet = OptionEnabDisab.Enable;
+            RuntimePrefs.TerrainLayer = 10;
 
             RuntimeGenerator = RuntimeTerrainGenerator.Get;
 
@@ -144,6 +150,9 @@ namespace GISTech.GISTerrainLoader
             else
             {
                 GenerationProgress.transform.parent.gameObject.SetActive(false);
+                // Only show buttons once terrain has loaded
+                nextButton.SetActive(true);
+                backButton.SetActive(true);
             }
         }
 

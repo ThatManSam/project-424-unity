@@ -15,21 +15,22 @@ public class GroundPlacementController : MonoBehaviour
     [SerializeField]
     private GameObject PerspectiveCamera;
 
+    [Header("Can be a prefab or an object already in the scene")]
     [SerializeField]
-    private GameObject prefab;
+    protected GameObject ObjectToPlace;
 
     [SerializeField]
     private KeyCode cancelPlacementKey = KeyCode.Escape;
 
     private KeyCode rotateKey = KeyCode.R;
 
-    private bool followTerrainAngle = false;
+    protected bool followTerrainAngle = false;
 
-    private GameObject currentPlaceableObject;
+    protected GameObject currentPlaceableObject;
 
     private float mouseRotation;
 
-    private int count = 0;
+    protected int count = 0;
 
     HierarchyManager hm;
     CameraMovement cm;
@@ -44,13 +45,13 @@ public class GroundPlacementController : MonoBehaviour
 
     }
 
-    public void ButtonClick()
+    public virtual void ButtonClick()
     {
 
         if( currentPlaceableObject == null )
         {
-            currentPlaceableObject = Instantiate(prefab);
-            currentPlaceableObject.name = prefab.name + "_" + count;
+            currentPlaceableObject = Instantiate(ObjectToPlace);
+            currentPlaceableObject.name = ObjectToPlace.name + "_" + count;
             //currentPlaceableObject.AddComponent("SceneObject");
             SceneObject script = currentPlaceableObject.GetComponent<SceneObject>();
             script.followTerrainAngle = followTerrainAngle;
@@ -90,7 +91,7 @@ public class GroundPlacementController : MonoBehaviour
         {
             followTerrainAngle = this.GetComponentInChildren<Toggle>().isOn;
         }
-        else followTerrainAngle = false;
+        else followTerrainAngle = true;
 
     }
 
@@ -102,7 +103,7 @@ public class GroundPlacementController : MonoBehaviour
         }
     }
 
-    private void ReleaseIfClicked()
+    public virtual void ReleaseIfClicked()
     {
         if (Input.GetMouseButtonDown(0))
         {
