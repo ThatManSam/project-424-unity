@@ -51,6 +51,9 @@ namespace GISTech.GISTerrainLoader
         // Detail slider
         public Slider detailSlider;
 
+        // Terrain Exaggeration
+        public Dropdown exaggerationDropdown;
+
 
         void Start()
         {
@@ -74,18 +77,22 @@ namespace GISTech.GISTerrainLoader
 
             // Set preferences
 
-            heightmapResolution = 5;
-            terrainExaggeration = 1;
-            enableTrees = true;
-            enableRoads = true;
-            enableBuildings = true;
+            //heightmapResolution = 5;
+            //terrainExaggeration = 1;
+            //enableTrees = true;
+            //enableRoads = true;
+            //enableBuildings = true;
+
+            
 
             DataFetchInstance = DataFetch.Instance;
         }
 
         void Update()
         {
-
+            SetQuality((int)detailSlider.value);
+            terrainExaggeration = exaggerationDropdown.value + 1;
+            //Debug.Log("Exagg: " + exaggerationDropdown.value);
         }
 
         public void OnGenerateTerrainbtnClicked()
@@ -119,15 +126,20 @@ namespace GISTech.GISTerrainLoader
                 RuntimeGenerator.TerrainFilePath = TerrainPath;
 
                 RuntimePrefs.TerrainElevation = elevationMode;
+
                 RuntimePrefs.TerrainExaggeration = terrainExaggeration;
+
                 RuntimePrefs.terrainDimensionMode = dimensionMode;
+
                 RuntimePrefs.UnderWater = underwaterMode;
+
                 RuntimePrefs.TerrainFixOption = autofixMode;
 
                 //var scale_x = float.Parse(TerrainScale_x.text.Replace(".", ","));
                 //var scale_y = float.Parse(TerrainScale_y.text.Replace(".", ","));
                 //var scale_z = float.Parse(TerrainScale_z.text.Replace(".", ","));
-                RuntimePrefs.terrainScale = new Vector3(1, 1, 1);
+
+                RuntimePrefs.terrainScale = new Vector3(1, terrainExaggeration, 1);
 
                 RuntimePrefs.heightmapResolution_index = heightmapResolution;
 
@@ -135,16 +147,17 @@ namespace GISTech.GISTerrainLoader
 
                 RuntimeGenerator.RemovePrevTerrain = true;
 
-                RuntimePrefs.EnableRoadGeneration = true;
-                RuntimePrefs.EnableBuildingGeneration = true;
-                RuntimePrefs.EnableTreeGeneration = true;
+                RuntimePrefs.EnableRoadGeneration = enableRoads;
 
+                RuntimePrefs.EnableBuildingGeneration = enableBuildings;
+
+                RuntimePrefs.EnableTreeGeneration = enableTrees;
 
                 StartCoroutine(RuntimeGenerator.StartGenerating());
             }
             else
             {
-                Debug.LogError("Terrain file null or not supported.. Try againe");
+                Debug.LogError("Terrain file null or not supported.. Try again");
                 return;
             }
 
@@ -172,6 +185,48 @@ namespace GISTech.GISTerrainLoader
                 nextButton.SetActive(true);
                 backButton.SetActive(true);
             }
+        }
+
+        private void SetQuality(int i)
+        {
+
+            switch (i)
+            {
+                case 0:
+                    heightmapResolution = 3;
+                    enableTrees = false;
+                    enableRoads = false;
+                    enableBuildings = false;
+                    break;
+                case 1:
+                    heightmapResolution = 4;
+                    enableTrees = false;
+                    enableRoads = true;
+                    enableBuildings = false;
+                    break;
+
+                case 2:
+                    heightmapResolution = 5;
+                    enableTrees = true;
+                    enableRoads = true;
+                    enableBuildings = true;
+                    break;
+
+                case 3:
+                    heightmapResolution = 6;
+                    enableTrees = true;
+                    enableRoads = true;
+                    enableBuildings = true;
+                    break;
+
+                case 4:
+                    heightmapResolution = 7;
+                    enableTrees = true;
+                    enableRoads = true;
+                    enableBuildings = true;
+                    break;
+            }
+
         }
 
     }
