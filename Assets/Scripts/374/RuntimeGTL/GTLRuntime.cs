@@ -37,6 +37,8 @@ namespace GISTech.GISTerrainLoader
 
         private GISTerrainLoaderRuntimePrefs RuntimePrefs;
 
+        private DataFetch DataFetchInstance;
+
         // Progress bar
         public Scrollbar GenerationProgress;
         public Text Phasename;
@@ -78,7 +80,7 @@ namespace GISTech.GISTerrainLoader
             enableRoads = true;
             enableBuildings = true;
 
-
+            DataFetchInstance = DataFetch.Instance;
         }
 
         void Update()
@@ -88,6 +90,22 @@ namespace GISTech.GISTerrainLoader
 
         public void OnGenerateTerrainbtnClicked()
         {
+            string tempFolder = UnityEngine.Windows.Directory.temporaryFolder;
+
+            Debug.Log("Setting temp folder: " + tempFolder);
+
+            string testCSV = "175.27000253,-37.7897077301,175.28376692,-37.7830590926";
+            DataFetchInstance.FileLocation = tempFolder;
+            terrainPathText = tempFolder + "/" + DataFetchInstance.LinzTifFilename;
+            try
+            {
+                DataFetchInstance.downloadOSMAndLINZFromCSV(testCSV);
+            }
+            catch (DataFetchException ex)
+            {
+                Debug.Log(string.Format("Error downloading data: {0}", ex.Message));
+                return;
+            }
 
             RuntimeGenerator.Error = false;
 

@@ -51,8 +51,32 @@ public class LINZexportsGetClass {
 }
 
 
+public class DataFetchException : Exception
+{
+    public DataFetchException() { }
+    public DataFetchException(string message) : base(message) { }
+}
+
 public class DataFetch : MonoBehaviour
 {
+    public string FileLocation = "GIS Tech/GIS Terrain Loader/Resources/GIS Terrains/linz_data";
+    public string LinzTifFilename = "linz_data.tif";
+    private static DataFetch instance;
+    
+    // Singleton Pattern
+    public static DataFetch Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new DataFetch();
+            }
+            return instance;
+        }
+    }
+
+
     const string OSM_URL_PREFIX = "https://www.openstreetmap.org/api/0.6/map?bbox=";
 
     // For validating the POST request body
@@ -119,6 +143,11 @@ public class DataFetch : MonoBehaviour
     // Test location used for development
     public void downloadOSMAndLINZ()
     {
+        string tempDir = UnityEngine.Windows.Directory.temporaryFolder;
+
+        Debug.Log("Adding temp dir: " + tempDir);
+
+
         double co_north = -37.7800;
         double co_south = -37.7910;
         double co_east = 175.2760;
@@ -135,7 +164,7 @@ public class DataFetch : MonoBehaviour
         if (ordinates.Length < 4)
         {
             Debug.Log(string.Format("CSV input too short: {0}", ordinates.Length));
-            throw new JsonException(string.Format("CSV input too short: {0}", ordinates.Length));
+            throw new DataFetchException(string.Format("CSV input too short: {0}", ordinates.Length));
         }
 
         // CSV input is West, South, East, North
@@ -151,16 +180,27 @@ public class DataFetch : MonoBehaviour
 
     public void downloadOSMAndLINZ(double north, double south, double east, double west)
     {
+        System.IO.DirectoryInfo di = new DirectoryInfo(FileLocation);
+
+        foreach (FileInfo file in di.GetFiles())
+        {
+            file.Delete();
+        }
+        foreach (DirectoryInfo dir in di.GetDirectories())
+        {
+            dir.Delete(true);
+        }
+
         double co_north = north;
         double co_south = south;
         double co_east = east;
         double co_west = west;
 
-        string OsmFilename = "linz_data_VectorData/linz_data_VectorData.osm";
+        string OsmFilename = "linz_data_VectorData.osm";
+        string OsmSubDirectory= "linz_data_VectorData";
         string LinzZipFilename = "linz_data.zip";
         string LinzTifFilename = "linz_data.tif";
-        string ProjectFileLocation = "GIS Tech/GIS Terrain Loader/Resources/GIS Terrains/linz_data";
-
+        
         using (var client = new WebClient())
         {
             
@@ -170,18 +210,24 @@ public class DataFetch : MonoBehaviour
             Debug.Log(string.Format("Sending request to {0}", url));
             try
             {
-                client.DownloadFile(url, string.Format("{0}/{1}/{2}", Application.dataPath, ProjectFileLocation, OsmFilename));
+                Directory.CreateDirectory(string.Format("{0}/{1}", FileLocation, OsmSubDirectory));
+                client.DownloadFile(url, string.Format("{0}/{1}/{2}", FileLocation, OsmSubDirectory, OsmFilename));
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Debug.Log(string.Format("Directory not found: {0}", ex.Message));
+                throw new DataFetchException(string.Format("Couldn't fetch data from OSM: {0}", ex.Message));
             }
             catch (WebException ex)
             {
                 Debug.Log(string.Format("The request was too big: {0}", ex.Message));
+                throw new DataFetchException(string.Format("Couldn't fetch data from OSM: {0}", ex.Message));
             }
-
 
             // GETTING LINZ DATA
             // First create the download with a POST request
             string linzDataURL = "https://data.linz.govt.nz/services/api/v1/exports/";
-            string lidarLayerURL = "https://data.linz.govt.nz/services/api/v1/layers/104772";
+            string lidarLayerURL = "https://data.linz.govt.nz/services/api/v1/layers/104772/";
 
             // This is the API key linked to a LINZ account
             string APIKey = "766cd6ac344b4d2cbf0a0952c94dc3fa";
@@ -219,7 +265,7 @@ public class DataFetch : MonoBehaviour
                 if (!JObject.Parse(json).IsValid(LINZExportPostSchema))
                 {
                     Debug.Log(string.Format("Is it valid? {0}", JObject.Parse(json).IsValid(LINZExportPostSchema)));
-                    throw new JsonException("The data for the LINZ post request was not formed correctly");
+                    throw new DataFetchException("The data for the LINZ post request was not formed correctly");
                 }
 
                 // Sending the request with data
@@ -242,7 +288,9 @@ public class DataFetch : MonoBehaviour
                 using (var stream = ex.Response.GetResponseStream())
                 using (var reader = new StreamReader(stream))
                 {
-                    Debug.Log(reader.ReadToEnd());
+                    string errorMessage = reader.ReadToEnd();
+                    Debug.Log(errorMessage);
+                    throw new DataFetchException(errorMessage);
                 }
             }
 
@@ -268,16 +316,21 @@ public class DataFetch : MonoBehaviour
                 using (var stream = ex.Response.GetResponseStream())
                 using (var reader = new StreamReader(stream))
                 {
-                    Debug.Log(reader.ReadToEnd());
+                    string errorMessage = reader.ReadToEnd();
+                    Debug.Log(errorMessage);
+                    throw new DataFetchException(errorMessage);
                 }
             }
 
-            // Check that the get response data is valid
-            if (!JObject.Parse(result).IsValid(LINZexportsGetSchema))
-            {
-                Debug.Log(string.Format("Is it valid? {0}", JObject.Parse(result).IsValid(LINZexportsGetSchema)));
-                throw new JsonException("The data returned from the LINZ get request was not formed correctly");
-            }
+            Debug.Log(result);
+
+            // TODO: Fix this
+            //// Check that the get response data is valid
+            //if (!JObject.Parse(result).IsValid(LINZexportsGetSchema))
+            //{
+            //    Debug.Log(string.Format("Is it valid? {0}", JObject.Parse(result).IsValid(LINZexportsGetSchema)));
+            //    throw new DataFetchException("The data returned from the LINZ get request was not formed correctly");
+            //}
 
             // Parse the returned data into an object
             List<LINZexportsGetClass> returnedClass = JsonConvert.DeserializeObject<List<LINZexportsGetClass>>(result);
@@ -285,8 +338,8 @@ public class DataFetch : MonoBehaviour
             Debug.Log(string.Format("First item url: {0} from {1}", returnedClass[0].download_url, result));
                         
 
-            string LINZFullFilename = string.Format("{0}/{1}/{2}", Application.dataPath, ProjectFileLocation, LinzZipFilename);
-            string LINZFullFileDirectory = string.Format("{0}/{1}", Application.dataPath, ProjectFileLocation);
+            string LINZFullFilename = string.Format("{0}/{1}", FileLocation, LinzZipFilename);
+            string LINZFullFileDirectory = FileLocation;
 
             // Sending Get request to download the LINZ lidar files
             try
@@ -298,6 +351,7 @@ public class DataFetch : MonoBehaviour
             catch (WebException ex)
             {
                 Debug.Log(string.Format("Error downloading LINZ file: {0}", ex));
+                throw new DataFetchException(string.Format("Error downloading LINZ file: {0}", ex));
             }
 
             // Extracting the returned file (it is a .zip)
