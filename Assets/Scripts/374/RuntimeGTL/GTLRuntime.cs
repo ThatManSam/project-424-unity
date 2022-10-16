@@ -59,7 +59,6 @@ namespace GISTech.GISTerrainLoader
 
         void Start()
         {
-
             RuntimeTerrainGenerator.OnProgress += OnGeneratingTerrainProg;
 
             terrainPathText = "E:\\Unity\\project-424-unity\\Assets\\GIS Tech\\GIS Terrain Loader\\Resources\\GIS Terrains\\newHamV8Track\\v8.tif";
