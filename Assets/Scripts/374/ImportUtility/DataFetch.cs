@@ -61,21 +61,13 @@ public class DataFetch : MonoBehaviour
 {
     public string FileLocation = "GIS Tech/GIS Terrain Loader/Resources/GIS Terrains/linz_data";
     public string LinzTifFilename = "linz_data.tif";
-    private static DataFetch instance;
+    public static DataFetch Instance;
     
     // Singleton Pattern
-    public static DataFetch Instance
+    private void Awake()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new DataFetch();
-            }
-            return instance;
-        }
+        Instance = this;
     }
-
 
     const string OSM_URL_PREFIX = "https://www.openstreetmap.org/api/0.6/map?bbox=";
 
@@ -180,6 +172,7 @@ public class DataFetch : MonoBehaviour
 
     public void downloadOSMAndLINZ(double north, double south, double east, double west)
     {
+        //throw new DataFetchException("This is a test Exception!");
         System.IO.DirectoryInfo di = new DirectoryInfo(FileLocation);
 
         foreach (FileInfo file in di.GetFiles())

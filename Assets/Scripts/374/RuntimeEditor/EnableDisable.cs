@@ -23,7 +23,7 @@ public class EnableDisable : MonoBehaviour
     [SerializeField]
     private List<GameObject> ToEnable = new List<GameObject>();
 
-    public void Click()
+    public void ToggleGameObjects()
     {
         //currentUI.SetActive(false);
         //currentCamera.SetActive(false);

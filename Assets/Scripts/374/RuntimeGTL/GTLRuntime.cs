@@ -39,6 +39,8 @@ namespace GISTech.GISTerrainLoader
 
         private DataFetch DataFetchInstance;
 
+        public EnableDisable EnableDisableScript;
+
         // Progress bar
         public Scrollbar GenerationProgress;
         public Text Phasename;
@@ -103,6 +105,7 @@ namespace GISTech.GISTerrainLoader
             }
             catch (DataFetchException ex)
             {
+                AlertPopUp.Instance.SetMessage(ex.Message).Show();
                 Debug.Log(string.Format("Error downloading data: {0}", ex.Message));
                 return;
             }
@@ -139,7 +142,7 @@ namespace GISTech.GISTerrainLoader
                 RuntimePrefs.EnableBuildingGeneration = true;
                 RuntimePrefs.EnableTreeGeneration = true;
 
-
+                Debug.Log("Some how got to here");
                 StartCoroutine(RuntimeGenerator.StartGenerating());
             }
             else
@@ -148,8 +151,7 @@ namespace GISTech.GISTerrainLoader
                 return;
             }
 
-
-
+            EnableDisableScript.ToggleGameObjects();            
         }
 
         private void OnGeneratingTerrainProg(string phase, float progress)
