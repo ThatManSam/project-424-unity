@@ -37,10 +37,6 @@ namespace GISTech.GISTerrainLoader
 
         private GISTerrainLoaderRuntimePrefs RuntimePrefs;
 
-        private DataFetch DataFetchInstance;
-
-        public EnableDisable EnableDisableScript;
-
         // Progress bar
         public Scrollbar GenerationProgress;
         public Text Phasename;
@@ -56,6 +52,10 @@ namespace GISTech.GISTerrainLoader
         // Terrain Exaggeration
         public Dropdown exaggerationDropdown;
 
+
+        private DataFetch DataFetchInstance;
+        public EnableDisable EnableDisableScript;
+        public Text CoordinatesCSVInput;
 
         void Start()
         {
@@ -103,12 +103,13 @@ namespace GISTech.GISTerrainLoader
 
             Debug.Log("Setting temp folder: " + tempFolder);
 
-            string testCSV = "175.27000253,-37.7897077301,175.28376692,-37.7830590926";
+            //string testCSV = "175.27000253,-37.7897077301,175.28376692,-37.7830590926";
             DataFetchInstance.FileLocation = tempFolder;
             terrainPathText = tempFolder + "/" + DataFetchInstance.LinzTifFilename;
+            Debug.Log(string.Format("Getting area: {0}", CoordinatesCSVInput.text));
             try
             {
-                DataFetchInstance.downloadOSMAndLINZFromCSV(testCSV);
+                DataFetchInstance.downloadOSMAndLINZFromCSV(CoordinatesCSVInput.text);
             }
             catch (DataFetchException ex)
             {
@@ -164,7 +165,7 @@ namespace GISTech.GISTerrainLoader
                 return;
             }
 
-            EnableDisableScript.ToggleGameObjects();            
+            EnableDisableScript.ToggleGameObjects();
         }
 
         private void OnGeneratingTerrainProg(string phase, float progress)

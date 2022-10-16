@@ -1,13 +1,13 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.IO;
 using System.IO.Compression;
+using System.Net;
+using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using UnityEngine;
-using System;
 
 /**
  * FOR DEVELOPING
@@ -156,7 +156,7 @@ public class DataFetch : MonoBehaviour
         if (ordinates.Length < 4)
         {
             Debug.Log(string.Format("CSV input too short: {0}", ordinates.Length));
-            throw new DataFetchException(string.Format("CSV input too short: {0}", ordinates.Length));
+            throw new DataFetchException("Please input like '175.27, -37.79, 175.28, -37.78'");
         }
 
         // CSV input is West, South, East, North
@@ -293,44 +293,53 @@ public class DataFetch : MonoBehaviour
             httpGetWebRequest.Method = "GET";
             httpGetWebRequest.Headers["Authorization"] = "Key " + APIKey;
 
-            result = "";
-            try
+            List<LINZexportsGetClass> returnedClass;
+
+            while (true)
             {
-                var httpResponse = (HttpWebResponse)httpGetWebRequest.GetResponse();
-
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                result = "";
+                try
                 {
-                    // Get the returned data
-                    result = streamReader.ReadToEnd();
+                    var httpResponse = (HttpWebResponse)httpGetWebRequest.GetResponse();
+
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        // Get the returned data
+                        result = streamReader.ReadToEnd();
+                    }
                 }
-            }
-            catch (WebException ex)
-            {
-                using (var stream = ex.Response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
+                catch (WebException ex)
                 {
-                    string errorMessage = reader.ReadToEnd();
-                    Debug.Log(errorMessage);
-                    throw new DataFetchException(errorMessage);
+                    using (var stream = ex.Response.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        string errorMessage = reader.ReadToEnd();
+                        Debug.Log(errorMessage);
+                        throw new DataFetchException(errorMessage);
+                    }
                 }
+
+                Debug.Log(result);
+
+                // TODO: Fix this
+                //// Check that the get response data is valid
+                //if (!JObject.Parse(result).IsValid(LINZexportsGetSchema))
+                //{
+                //    Debug.Log(string.Format("Is it valid? {0}", JObject.Parse(result).IsValid(LINZexportsGetSchema)));
+                //    throw new DataFetchException("The data returned from the LINZ get request was not formed correctly");
+                //}
+
+                // Parse the returned data into an object
+
+                //TODO: Make this and all queries async 
+                returnedClass = JsonConvert.DeserializeObject<List<LINZexportsGetClass>>(result);
+                //TODO: Check the time created instead of if the download is null (this could still download old exports)
+                if (returnedClass[0].download_url != null) break;
+                Thread.Sleep(500);
             }
-
-            Debug.Log(result);
-
-            // TODO: Fix this
-            //// Check that the get response data is valid
-            //if (!JObject.Parse(result).IsValid(LINZexportsGetSchema))
-            //{
-            //    Debug.Log(string.Format("Is it valid? {0}", JObject.Parse(result).IsValid(LINZexportsGetSchema)));
-            //    throw new DataFetchException("The data returned from the LINZ get request was not formed correctly");
-            //}
-
-            // Parse the returned data into an object
-            List<LINZexportsGetClass> returnedClass = JsonConvert.DeserializeObject<List<LINZexportsGetClass>>(result);
 
             Debug.Log(string.Format("First item url: {0} from {1}", returnedClass[0].download_url, result));
-                        
-
+            
             string LINZFullFilename = string.Format("{0}/{1}", FileLocation, LinzZipFilename);
             string LINZFullFileDirectory = FileLocation;
 

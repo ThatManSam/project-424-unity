@@ -26,6 +26,8 @@ public class AlertPopUp : MonoBehaviour
 
         closeAlertButton.onClick.RemoveAllListeners();
         closeAlertButton.onClick.AddListener(Hide);
+
+        Hide();
     }
 
     public AlertPopUp SetTitle(string title)
