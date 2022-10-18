@@ -55,7 +55,7 @@ namespace GISTech.GISTerrainLoader
 
         private DataFetch DataFetchInstance;
         public EnableDisable EnableDisableScript;
-        public Text CoordinatesCSVInput;
+        public InputField CoordinatesCSVInput;
 
         void Start()
         {

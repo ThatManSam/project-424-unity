@@ -48,8 +48,8 @@ CRS: WGS 84
 
 - imported to LINZ Data Service in GeoTIFF format on 19 Jul 2020
 - reprojected from NZGD2000 / New Zealand Transverse Mercator 2000 to WGS 84
-- clipped to (37.783°S 175.270°E)-(37.790°S 175.284°E)
-- converted by LINZ Data Service to GeoTIFF on 16 Oct 2022 (reference #2667696)
+- clipped to (37.781°S 175.260°E)-(37.790°S 175.275°E)
+- converted by LINZ Data Service to GeoTIFF on 18 Oct 2022 (reference #2670390)
 
 ------------------------------------------------------------------------
  LICENSE: Creative Commons Attribution 4.0 International
