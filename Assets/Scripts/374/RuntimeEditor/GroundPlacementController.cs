@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Adapted from
-// https://www.youtube.com/watch?v=YI6F1x4pzpg&t=0s
-
 public class GroundPlacementController : MonoBehaviour
 {
 
@@ -32,10 +29,12 @@ public class GroundPlacementController : MonoBehaviour
 
     protected int count = 0;
 
+    // Scripts for reference
     HierarchyManager hm;
     CameraMovement cm;
     SelectionManager sm;
 
+    // Get scripts for reference
     public void Start()
     {
         hm = SceneController.GetComponent<HierarchyManager>();
@@ -47,18 +46,20 @@ public class GroundPlacementController : MonoBehaviour
 
     public virtual void ButtonClick()
     {
-
+        // Make sure the object exists
         if( currentPlaceableObject == null )
         {
+            // Instatiate new instance of prefab
             currentPlaceableObject = Instantiate(ObjectToPlace);
+            // Give it a new unique name
             currentPlaceableObject.name = ObjectToPlace.name + "_" + count;
-            //currentPlaceableObject.AddComponent("SceneObject");
+            // Change whether it follow terrain angle or not
             SceneObject script = currentPlaceableObject.GetComponent<SceneObject>();
             script.followTerrainAngle = followTerrainAngle;
 
             count++;
 
-            //// Disable collider so raycast doesnt break
+            // Disable collider so raycast doesnt break
             if (currentPlaceableObject.GetComponent<Collider>() != null)
             {
                 currentPlaceableObject.GetComponent<Collider>().enabled = false;
@@ -77,8 +78,8 @@ public class GroundPlacementController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
-        if(currentPlaceableObject != null)
+        // Make sure the object exists
+        if (currentPlaceableObject != null)
         {
             MoveCurrentPlaceableObjectToMouse();
             RotatePlaceable();
@@ -99,12 +100,14 @@ public class GroundPlacementController : MonoBehaviour
     {
         if (Input.GetKeyDown(cancelPlacementKey))
         {
+            // Destroy instatiated object if canceled
             Destroy(currentPlaceableObject);
         }
     }
 
     public virtual void ReleaseIfClicked()
     {
+        // Check for mouse click left
         if (Input.GetMouseButtonDown(0))
         {
             // Re-enable collider
@@ -112,40 +115,42 @@ public class GroundPlacementController : MonoBehaviour
             {
                 currentPlaceableObject.GetComponent<Collider>().enabled = true;
             }
-
-            //HierarchyManager script = SceneController.GetComponent<HierarchyManager>();
+            // Add object to hierarchy
             hm.AddObject(currentPlaceableObject);
-
             currentPlaceableObject = null;
         }
     }
 
     private void RotatePlaceable()
     {
-        //cm = PerspectiveCamera.GetComponent<CameraMovement>();
-        // Disable scroll for camera to use for rotation
+        // Disable scroll for camera to use for prefab placement rotation
         if (Input.GetKeyDown(rotateKey)) cm.disableScroll();
         else if (Input.GetKeyUp(rotateKey)) cm.enableScroll();
 
         // While rotate key is held use mouse scroll to update rotation
         if (Input.GetKey(rotateKey))
         {
+            // Add additional Y rotation if following terrain angle
             if(followTerrainAngle) mouseRotation += Input.mouseScrollDelta.y;
             else mouseRotation = Input.mouseScrollDelta.y;
         }
-        //Debug.Log("Mouse Rotation: " + mouseRotation);
+        // Update object position
         currentPlaceableObject.transform.Rotate(Vector3.up, mouseRotation * 10f);
 
     }
 
     private void MoveCurrentPlaceableObjectToMouse()
     {
+        // Create ray from camera to mouse pos
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hitInfo;
+        // Check if raycast has hit something
         if(Physics.Raycast(ray, out hitInfo))
         {
+            // Move current selection to when ray hit
             currentPlaceableObject.transform.position = hitInfo.point;
+            // Update rotation if follow terrain angle enabled
             if (followTerrainAngle)
             {
                 currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);

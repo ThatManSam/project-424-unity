@@ -14,6 +14,7 @@ public class PrefabsManager : MonoBehaviour
     private int pos = 0;
 
     // 0 = left, 1 = right
+    // Scroll through list of active panels
     public void Scroll(int direction)
     {
         if (direction == 0)

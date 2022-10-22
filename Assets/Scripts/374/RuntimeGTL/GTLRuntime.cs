@@ -1,12 +1,15 @@
-/*     Unity GIS Tech 2020-2021      */
-
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-/* +-+-+-+-+-+-+-+ Adapted from MainUI.cs +-+-+-+-+-+-+-+ */
+/* 
+/*  This script is adapted from MainUI.cs
+ *  which is a script of GIS Terrain Loader
+ *  which has been paid for and allows use
+ *  of modification
+ */
 
 namespace GISTech.GISTerrainLoader
 {
@@ -59,49 +62,36 @@ namespace GISTech.GISTerrainLoader
 
         void Start()
         {
+            // Update terrain generation progress
             RuntimeTerrainGenerator.OnProgress += OnGeneratingTerrainProg;
-
-            terrainPathText = "E:\\Unity\\project-424-unity\\Assets\\GIS Tech\\GIS Terrain Loader\\Resources\\GIS Terrains\\newHamV8Track\\v8.tif";
-            //terrainPathText = "";
-
-            Debug.Log("Path: " + terrainPathText);
-
-            //GenerateTerrainBtn.onClick.AddListener(OnGenerateTerrainbtnClicked);
-
+            // Get runtime preferences 
             RuntimePrefs = GISTerrainLoaderRuntimePrefs.Get;
+            // Enable and set layer of terrain
             RuntimePrefs.TerrainLayerSet = OptionEnabDisab.Enable;
             RuntimePrefs.TerrainLayer = 10;
-
+            // Get runtime terrain generator
             RuntimeGenerator = RuntimeTerrainGenerator.Get;
-
+            // Add a onClick listener for terrain generation button
             GenerateTerrainBtn.onClick.AddListener(OnGenerateTerrainbtnClicked);
-
-            // Set preferences
-
-            //heightmapResolution = 5;
-            //terrainExaggeration = 1;
-            //enableTrees = true;
-            //enableRoads = true;
-            //enableBuildings = true;
-
-            
-
+            // Get data fetch singleton
             DataFetchInstance = DataFetch.Instance;
         }
 
         void Update()
         {
+            // Update selected quality of terrain
             SetQuality((int)detailSlider.value);
+            // Update terrain height exaggeration
             terrainExaggeration = exaggerationDropdown.value + 1;
-            //Debug.Log("Exagg: " + exaggerationDropdown.value);
         }
 
         public void OnGenerateTerrainbtnClicked()
         {
+            // Get path of folder to download data
             string tempFolder = UnityEngine.Windows.Directory.temporaryFolder;
-
             Debug.Log("Setting temp folder: " + tempFolder);
 
+            // Get data 
             //string testCSV = "175.27000253,-37.7897077301,175.28376692,-37.7830590926";
             DataFetchInstance.FileLocation = tempFolder;
             terrainPathText = tempFolder + "/" + DataFetchInstance.LinzTifFilename;
@@ -121,11 +111,12 @@ namespace GISTech.GISTerrainLoader
 
             RuntimeGenerator.enabled = true;
 
+            // Give data folder location to GTL
             var TerrainPath = terrainPathText;
-
-
             if (!string.IsNullOrEmpty(TerrainPath) && System.IO.File.Exists(TerrainPath))
             {
+                // Set terrain preferences for generation
+
                 RuntimeGenerator.TerrainFilePath = TerrainPath;
 
                 RuntimePrefs.TerrainElevation = elevationMode;
@@ -137,10 +128,6 @@ namespace GISTech.GISTerrainLoader
                 RuntimePrefs.UnderWater = underwaterMode;
 
                 RuntimePrefs.TerrainFixOption = autofixMode;
-
-                //var scale_x = float.Parse(TerrainScale_x.text.Replace(".", ","));
-                //var scale_y = float.Parse(TerrainScale_y.text.Replace(".", ","));
-                //var scale_z = float.Parse(TerrainScale_z.text.Replace(".", ","));
 
                 RuntimePrefs.terrainScale = new Vector3(1, terrainExaggeration, 1);
 
@@ -169,7 +156,7 @@ namespace GISTech.GISTerrainLoader
 
         private void OnGeneratingTerrainProg(string phase, float progress)
         {
-
+            // Update terrain generation progress
             if (!phase.Equals("Finalization"))
             {
                 GenerationProgress.transform.parent.gameObject.SetActive(true);
@@ -191,7 +178,7 @@ namespace GISTech.GISTerrainLoader
 
         private void SetQuality(int i)
         {
-
+            // Set terrain generation quality
             switch (i)
             {
                 case 0:
