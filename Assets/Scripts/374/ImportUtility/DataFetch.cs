@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
@@ -62,7 +64,7 @@ public class DataFetch : MonoBehaviour
     public string FileLocation = "GIS Tech/GIS Terrain Loader/Resources/GIS Terrains/linz_data";
     public string LinzTifFilename = "linz_data.tif";
     public static DataFetch Instance;
-    
+
     // Singleton Pattern
     private void Awake()
     {
@@ -132,25 +134,7 @@ public class DataFetch : MonoBehaviour
     }");
 
 
-    // Test location used for development
-    public void downloadOSMAndLINZ()
-    {
-        string tempDir = UnityEngine.Windows.Directory.temporaryFolder;
-
-        Debug.Log("Adding temp dir: " + tempDir);
-
-
-        double co_north = -37.7800;
-        double co_south = -37.7910;
-        double co_east = 175.2760;
-        double co_west = 175.2600;
-
-        downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
-    }
-
-
-    // Test location used for development
-    public void downloadOSMAndLINZFromCSV(string csv)
+    public async Task downloadOSMAndLINZFromCSV(string csv)
     {
         string[] ordinates = csv.Split(',');
         if (ordinates.Length < 4)
@@ -166,11 +150,11 @@ public class DataFetch : MonoBehaviour
         double co_east = Double.Parse(ordinates[2]);
         double co_west = Double.Parse(ordinates[0]);
 
-        downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
+        await downloadOSMAndLINZ(co_north, co_south, co_east, co_west);
     }
 
 
-    public void downloadOSMAndLINZ(double north, double south, double east, double west)
+    public async Task downloadOSMAndLINZ(double north, double south, double east, double west)
     {
         //throw new DataFetchException("This is a test Exception!");
         System.IO.DirectoryInfo di = new DirectoryInfo(FileLocation);
@@ -193,10 +177,9 @@ public class DataFetch : MonoBehaviour
         string OsmSubDirectory= "linz_data_VectorData";
         string LinzZipFilename = "linz_data.zip";
         string LinzTifFilename = "linz_data.tif";
-        
+
         using (var client = new WebClient())
         {
-            
             // GETTING OSM DATA
             // Coordinate order: West -> South -> East -> North
             string url = string.Format("{0}{1:F4}%2C{2:F4}%2C{3:F4}%2C{4:F4}", OSM_URL_PREFIX, co_west, co_south, co_east, co_north);
@@ -204,7 +187,7 @@ public class DataFetch : MonoBehaviour
             try
             {
                 Directory.CreateDirectory(string.Format("{0}/{1}", FileLocation, OsmSubDirectory));
-                client.DownloadFile(url, string.Format("{0}/{1}/{2}", FileLocation, OsmSubDirectory, OsmFilename));
+                await client.DownloadFileTaskAsync(url, string.Format("{0}/{1}/{2}", FileLocation, OsmSubDirectory, OsmFilename));
             }
             catch (DirectoryNotFoundException ex)
             {
@@ -213,6 +196,10 @@ public class DataFetch : MonoBehaviour
             }
             catch (WebException ex)
             {
+                if ((int)((HttpWebResponse)ex.Response).StatusCode == 400)
+                {
+                    throw new DataFetchException("The selected area is too large");
+                }
                 Debug.Log(string.Format("The request was too big: {0}", ex.Message));
                 throw new DataFetchException(string.Format("Couldn't fetch data from OSM: {0}", ex.Message));
             }
@@ -226,7 +213,7 @@ public class DataFetch : MonoBehaviour
             string APIKey = "766cd6ac344b4d2cbf0a0952c94dc3fa";
 
             var httpPostWebRequest = (HttpWebRequest)WebRequest.Create(linzDataURL);
-            
+
             // Web request setup
             httpPostWebRequest.ContentType = "application/json";
             httpPostWebRequest.Method = "POST";
@@ -242,15 +229,15 @@ public class DataFetch : MonoBehaviour
                 postData.items[0].item = lidarLayerURL;
 
                 postData.extent.type = "Polygon";
-                postData.extent.coordinates = new double[1,5,2] {
-                    { 
-                        { co_west, co_south },
-                        { co_west, co_north },
-                        { co_east, co_north },
-                        { co_east, co_south },
-                        { co_west, co_south }
-                    }
-                };
+                postData.extent.coordinates = new double[1, 5, 2] {
+                        {
+                            { co_west, co_south },
+                            { co_west, co_north },
+                            { co_east, co_north },
+                            { co_east, co_south },
+                            { co_west, co_south }
+                        }
+                    };
 
                 string json = JsonConvert.SerializeObject(postData);
 
@@ -270,7 +257,7 @@ public class DataFetch : MonoBehaviour
             try
             {
                 var httpResponse = (HttpWebResponse)httpPostWebRequest.GetResponse();
-                
+
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     result = streamReader.ReadToEnd();
@@ -287,16 +274,16 @@ public class DataFetch : MonoBehaviour
                 }
             }
 
-            // Setting up the GET request
-            var httpGetWebRequest = (HttpWebRequest)WebRequest.Create(linzDataURL);
-            httpGetWebRequest.ContentType = "application/json";
-            httpGetWebRequest.Method = "GET";
-            httpGetWebRequest.Headers["Authorization"] = "Key " + APIKey;
-
             List<LINZexportsGetClass> returnedClass;
-
+            
             while (true)
             {
+                // Setting up the GET request
+                var httpGetWebRequest = (HttpWebRequest)WebRequest.Create(linzDataURL);
+                httpGetWebRequest.ContentType = "application/json";
+                httpGetWebRequest.Method = "GET";
+                httpGetWebRequest.Headers["Authorization"] = "Key " + APIKey;
+
                 result = "";
                 try
                 {
@@ -333,13 +320,20 @@ public class DataFetch : MonoBehaviour
 
                 //TODO: Make this and all queries async 
                 returnedClass = JsonConvert.DeserializeObject<List<LINZexportsGetClass>>(result);
-                //TODO: Check the time created instead of if the download is null (this could still download old exports)
-                if (returnedClass[0].download_url != null) break;
-                Thread.Sleep(500);
+
+                if (returnedClass != null && returnedClass.Count > 0 && returnedClass[0].download_url != null)
+                {
+                    Debug.Log(returnedClass);
+                    //TODO: Check the time created instead of if the download is null (this could still download old exports)
+                    break;
+                }
+                // Try again after a small delay
+                Debug.Log("Retrying Query");
+                await Task.Delay(2000);
             }
 
             Debug.Log(string.Format("First item url: {0} from {1}", returnedClass[0].download_url, result));
-            
+
             string LINZFullFilename = string.Format("{0}/{1}", FileLocation, LinzZipFilename);
             string LINZFullFileDirectory = FileLocation;
 
@@ -348,7 +342,7 @@ public class DataFetch : MonoBehaviour
             {
                 Debug.Log(string.Format("Sending request to {0}", returnedClass[0].download_url));
                 client.Headers["Authorization"] = "Key " + APIKey;
-                client.DownloadFile(returnedClass[0].download_url, LINZFullFilename);
+                await client.DownloadFileTaskAsync(returnedClass[0].download_url, LINZFullFilename);
             }
             catch (WebException ex)
             {
@@ -378,7 +372,6 @@ public class DataFetch : MonoBehaviour
             {
                 File.Move(string.Format(tifFiles[0].Replace('\\', '/')), string.Format("{0}/{1}", LINZFullFileDirectory, LinzTifFilename));
             }
-
         }
     }
 }

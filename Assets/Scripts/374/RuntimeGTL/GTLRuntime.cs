@@ -60,6 +60,8 @@ namespace GISTech.GISTerrainLoader
         public EnableDisable EnableDisableScript;
         public InputField CoordinatesCSVInput;
 
+        public GameObject downloadingTerrainLabel;
+
         void Start()
         {
             // Update terrain generation progress
@@ -75,6 +77,8 @@ namespace GISTech.GISTerrainLoader
             GenerateTerrainBtn.onClick.AddListener(OnGenerateTerrainbtnClicked);
             // Get data fetch singleton
             DataFetchInstance = DataFetch.Instance;
+
+            downloadingTerrainLabel.SetActive(false);
         }
 
         void Update()
@@ -85,10 +89,12 @@ namespace GISTech.GISTerrainLoader
             terrainExaggeration = exaggerationDropdown.value + 1;
         }
 
-        public void OnGenerateTerrainbtnClicked()
+        public async void OnGenerateTerrainbtnClicked()
         {
-            // Get path of folder to download data
-            string tempFolder = UnityEngine.Windows.Directory.temporaryFolder;
+            // Show downloading status text
+            downloadingTerrainLabel.SetActive(true);
+            string tempFolder = Application.dataPath + "/StreamingAssets";
+
             Debug.Log("Setting temp folder: " + tempFolder);
 
             // Get data 
@@ -98,10 +104,11 @@ namespace GISTech.GISTerrainLoader
             Debug.Log(string.Format("Getting area: {0}", CoordinatesCSVInput.text));
             try
             {
-                DataFetchInstance.downloadOSMAndLINZFromCSV(CoordinatesCSVInput.text);
+                await DataFetchInstance.downloadOSMAndLINZFromCSV(CoordinatesCSVInput.text);
             }
             catch (DataFetchException ex)
             {
+                downloadingTerrainLabel.SetActive(false);
                 AlertPopUp.Instance.SetMessage(ex.Message).Show();
                 Debug.Log(string.Format("Error downloading data: {0}", ex.Message));
                 return;
