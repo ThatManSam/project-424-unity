@@ -54,30 +54,31 @@ public class CameraMovement : MonoBehaviour
             // Get change in mouse pos to use for rotation
             rotationX = Input.GetAxis(mouseVerticalAxisName) * rotationSensitivity;
             rotationY = Input.GetAxis(mouseHorizontalAxisName) * rotationSensitivity;
-
-            // Get new vector position for camera
-            Vector3 move = Vector3.zero;
-            float speed = navigationSpeed * (Input.GetKey(KeyCode.LeftShift) ? shiftMultiplier : 1f) * Time.deltaTime * 9.1f;
-            if (Input.GetKey(KeyCode.W))
-                move += Vector3.forward * speed;
-            if (Input.GetKey(KeyCode.S))
-                move -= Vector3.forward * speed;
-            if (Input.GetKey(KeyCode.D))
-                move += Vector3.right * speed;
-            if (Input.GetKey(KeyCode.A))
-                move -= Vector3.right * speed;
-            if (Input.GetKey(KeyCode.E))
-                move += Vector3.up * speed;
-            if (Input.GetKey(KeyCode.Q))
-                move -= Vector3.up * speed;
-
-            // Move camera to new position
-            transform.Translate(move);
+            
         }
 
         // Rotate camera to new position
         transform.Rotate(0, rotationY, 0, Space.World);
         transform.Rotate(-rotationX, 0, 0);
+
+        // Get new vector position for camera
+        Vector3 move = Vector3.zero;
+        float speed = navigationSpeed * (Input.GetKey(KeyCode.LeftShift) ? shiftMultiplier : 1f) * Time.deltaTime * 9.1f;
+        if (Input.GetKey(KeyCode.W))
+            move += Vector3.forward * speed;
+        if (Input.GetKey(KeyCode.S))
+            move -= Vector3.forward * speed;
+        if (Input.GetKey(KeyCode.D))
+            move += Vector3.right * speed;
+        if (Input.GetKey(KeyCode.A))
+            move -= Vector3.right * speed;
+        if (Input.GetKey(KeyCode.E))
+            move += Vector3.up * speed;
+        if (Input.GetKey(KeyCode.Q))
+            move -= Vector3.up * speed;
+
+        // Move camera to new position
+        transform.Translate(move);
 
         // When F is pressed current selected object will be 'focused'
         if (Input.GetKeyDown(KeyCode.F))

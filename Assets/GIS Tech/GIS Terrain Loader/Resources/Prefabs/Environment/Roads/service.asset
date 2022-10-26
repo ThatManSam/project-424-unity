@@ -15,7 +15,7 @@ MonoBehaviour:
   RoadType: service
   MaterialType: 1
   Roadmaterial: {fileID: 2100000, guid: ec8a3a24812e24a46a5d3fe62c1a16c7, type: 2}
-  RoadWidth: 3
+  RoadWidth: 5
   RoadColor:
     serializedVersion: 2
     rgba: 4278190080

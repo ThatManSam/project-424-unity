@@ -15,7 +15,7 @@ MonoBehaviour:
   RoadType: cycleway
   MaterialType: 1
   Roadmaterial: {fileID: 2100000, guid: 26f267768cffeb14595d762eaaec2692, type: 2}
-  RoadWidth: 1
+  RoadWidth: 3
   RoadColor:
     serializedVersion: 2
     rgba: 4278190080

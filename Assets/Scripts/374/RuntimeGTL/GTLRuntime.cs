@@ -158,6 +158,8 @@ namespace GISTech.GISTerrainLoader
                 return;
             }
 
+            downloadingTerrainLabel.SetActive(false);
+
             EnableDisableScript.ToggleGameObjects();
         }
 

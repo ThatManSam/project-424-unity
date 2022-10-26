@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoadType: unclassified
   MaterialType: 1
-  Roadmaterial: {fileID: 2100000, guid: e7b73630dcf32f8408b046691097001d, type: 2}
-  RoadWidth: 1
+  Roadmaterial: {fileID: 2100000, guid: 173d7f69775703841bd51364baef9e95, type: 2}
+  RoadWidth: 8
   RoadColor:
     serializedVersion: 2
     rgba: 4278190080

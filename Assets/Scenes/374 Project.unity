@@ -264,6 +264,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19921162, guid: ce6971b64d43d604c9d3d0e1a95eccc0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19982122, guid: ce6971b64d43d604c9d3d0e1a95eccc0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce6971b64d43d604c9d3d0e1a95eccc0, type: 3}
 --- !u!1 &26672295
@@ -4291,7 +4299,7 @@ RectTransform:
   m_Father: {fileID: 1083808038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.26245463}
+  m_AnchorMin: {x: 0, y: 0.37719154}
   m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -21466,8 +21474,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 370665767}
   m_HandleRect: {fileID: 370665766}
   m_Direction: 2
-  m_Value: 0.99999976
-  m_Size: 0.73754525
+  m_Value: 0.9999998
+  m_Size: 0.6228084
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22035,8 +22043,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 429, y: -54}
-  m_SizeDelta: {x: 250, y: 100}
+  m_AnchoredPosition: {x: 448.43527, y: -54}
+  m_SizeDelta: {x: 288.8705, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1976524221
 MonoBehaviour:
@@ -22081,7 +22089,9 @@ MonoBehaviour:
     - SHIFT to accelerate movement
 
     - F to focus
-    on selected object'
+    on selected object
+
+    - SPACE to enable editing on selected object'
 --- !u!222 &1976524222
 CanvasRenderer:
   m_ObjectHideFlags: 0
