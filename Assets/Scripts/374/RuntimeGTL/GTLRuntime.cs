@@ -105,6 +105,7 @@ namespace GISTech.GISTerrainLoader
             try
             {
                 await DataFetchInstance.downloadOSMAndLINZFromCSV(CoordinatesCSVInput.text);
+                downloadingTerrainLabel.SetActive(false);
             }
             catch (DataFetchException ex)
             {
@@ -158,7 +159,6 @@ namespace GISTech.GISTerrainLoader
                 return;
             }
 
-            downloadingTerrainLabel.SetActive(false);
 
             EnableDisableScript.ToggleGameObjects();
         }
