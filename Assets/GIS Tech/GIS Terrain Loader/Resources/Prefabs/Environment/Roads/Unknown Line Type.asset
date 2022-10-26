@@ -15,7 +15,7 @@ MonoBehaviour:
   RoadType: Unknown Line Type
   MaterialType: 1
   Roadmaterial: {fileID: 2100000, guid: f895fccde75669545b581232b3073763, type: 2}
-  RoadWidth: 1
+  RoadWidth: 5
   RoadColor:
     serializedVersion: 2
     rgba: 4278190080

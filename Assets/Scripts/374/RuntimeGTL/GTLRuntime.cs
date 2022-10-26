@@ -31,6 +31,7 @@ namespace GISTech.GISTerrainLoader
         public bool enableTrees;
         public bool enableRoads;
         public bool enableBuildings;
+        public Material defaultTexture;
 
         // Button to generate file
         public Button GenerateTerrainBtn;
@@ -179,9 +180,28 @@ namespace GISTech.GISTerrainLoader
             else
             {
                 GenerationProgress.transform.parent.gameObject.SetActive(false);
+
+                // Apply a default texture
+                // Should be removed if aerial imagery is used
+                ApplyTexture();
+
                 // Only show buttons once terrain has loaded
                 nextButton.SetActive(true);
                 backButton.SetActive(true);
+            }
+        }
+
+        private void ApplyTexture()
+        {
+            GameObject terrains = GameObject.Find("Terrains");
+
+            foreach (Transform child in terrains.transform)
+            {
+                if (child.gameObject.GetComponent<Terrain>() != null)
+                {
+                    Debug.Log("Terrain Found");
+                    child.gameObject.GetComponent<Terrain>().materialTemplate = defaultTexture;
+                }
             }
         }
 

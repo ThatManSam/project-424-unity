@@ -15,8 +15,8 @@ MonoBehaviour:
   buildingType: yes
   roofType: 1
   height: 8
-  wall: {fileID: 2100000, guid: bce40e05eb264ec418fe59ad6697fc62, type: 2}
-  roof: {fileID: 2100000, guid: 3213b922d804f014c81907b5cec0eec7, type: 2}
-  WallTextureTiling: {x: 1.5, y: 1.1}
+  wall: {fileID: 2100000, guid: a90af0a934572ab47a8b4dfe49fef0c3, type: 2}
+  roof: {fileID: 2100000, guid: e24c3986cc934f440905cf7c866f6c80, type: 2}
+  WallTextureTiling: {x: 4, y: 2}
   RoofTextureTiling: {x: 5, y: 5}
   mesh: {fileID: 0}

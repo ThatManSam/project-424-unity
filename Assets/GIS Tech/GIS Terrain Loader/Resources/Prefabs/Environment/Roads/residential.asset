@@ -15,7 +15,7 @@ MonoBehaviour:
   RoadType: residential
   MaterialType: 1
   Roadmaterial: {fileID: 2100000, guid: 3a639e16325b52742b7a2205a410f98a, type: 2}
-  RoadWidth: 3
+  RoadWidth: 4
   RoadColor:
     serializedVersion: 2
     rgba: 4278190080

@@ -73,7 +73,8 @@ namespace GISTech.GISTerrainLoader
             roadType.roadMaterial = m_road.material;
  
             Eroad = roadNetwork.CreateRoad(roadType.roadTypeName, roadType, m_road.Points);
-            Eroad.SnapToTerrain(true);
+            Eroad.SnapToTerrain(true, 0.05f);
+
             Eroad.gameObject.isStatic = false;
 
             if(roadContiner==null)
@@ -127,7 +128,11 @@ namespace GISTech.GISTerrainLoader
             roadType.roadMaterial = m_road.material;
 
             Eroad = roadNetwork.CreateRoad(roadType.roadTypeName, roadType, m_road.Points);
-            Eroad.SnapToTerrain(true);
+
+            Eroad.SnapToTerrain(true, 0.05f);
+            Eroad.FollowTerrainContourThreshold(10);
+            Eroad.FollowTerrainContours(true);
+
             Eroad.gameObject.isStatic = false;
 
             Eroad.gameObject.transform.parent = container.transform;
