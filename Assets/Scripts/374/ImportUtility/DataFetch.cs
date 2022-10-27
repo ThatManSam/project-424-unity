@@ -158,7 +158,7 @@ public class DataFetch : MonoBehaviour
     {
         DownloadingLabelController.Instance.SetMessage("Downloading Road Data (1/4)");
         //throw new DataFetchException("This is a test Exception!");
-        System.IO.DirectoryInfo di = new DirectoryInfo(FileLocation);
+        DirectoryInfo di = Directory.CreateDirectory(FileLocation);
 
         foreach (FileInfo file in di.GetFiles())
         {
