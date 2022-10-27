@@ -156,6 +156,7 @@ public class DataFetch : MonoBehaviour
 
     public async Task downloadOSMAndLINZ(double north, double south, double east, double west)
     {
+        DownloadingLabelController.Instance.SetMessage("Downloading Road Data (1/4)");
         //throw new DataFetchException("This is a test Exception!");
         System.IO.DirectoryInfo di = new DirectoryInfo(FileLocation);
 
@@ -205,6 +206,7 @@ public class DataFetch : MonoBehaviour
             }
 
             // GETTING LINZ DATA
+            DownloadingLabelController.Instance.SetMessage("Requesting Elevation Data (2/4)");
             // First create the download with a POST request
             string linzDataURL = "https://data.linz.govt.nz/services/api/v1/exports/";
             string lidarLayerURL = "https://data.linz.govt.nz/services/api/v1/layers/104772/";
@@ -334,6 +336,8 @@ public class DataFetch : MonoBehaviour
 
             Debug.Log(string.Format("First item url: {0} from {1}", returnedClass[0].download_url, result));
 
+            DownloadingLabelController.Instance.SetMessage("Downloading Elevation Data (3/4)");
+
             string LINZFullFilename = string.Format("{0}/{1}", FileLocation, LinzZipFilename);
             string LINZFullFileDirectory = FileLocation;
 
@@ -349,6 +353,8 @@ public class DataFetch : MonoBehaviour
                 Debug.Log(string.Format("Error downloading LINZ file: {0}", ex));
                 throw new DataFetchException(string.Format("Error downloading LINZ file: {0}", ex));
             }
+
+            DownloadingLabelController.Instance.SetMessage("Preparing Files (4/4)");
 
             // Extracting the returned file (it is a .zip)
             if (File.Exists(LINZFullFilename))
