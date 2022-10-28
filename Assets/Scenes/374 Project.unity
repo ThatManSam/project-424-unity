@@ -3947,11 +3947,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f30d669a60796f46bdf677cef5b6f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationSensitivity: 2
-  zoomSensitiviy: 10
-  rotationSensitivity: 2
-  navigationSpeed: 2.4
-  shiftMultiplier: 10
+  cameraTranslationSensitivity: 2
+  cameraZoomSensitivity: 10
+  cameraRotationSensitivity: 2
+  keysSpeed: 2.4
+  movementMultiplier: 10
 --- !u!81 &344767264
 AudioListener:
   m_ObjectHideFlags: 0

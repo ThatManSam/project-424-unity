@@ -6,14 +6,14 @@ public class CameraMovement : MonoBehaviour
 {
 
     // Camera movement preferences
-    public float translationSensitivity = 2;
-    public float zoomSensitiviy = 10;
-    public float rotationSensitivity = 2;
-    public float navigationSpeed = 2.4f;
-    public float shiftMultiplier = 2f;
+    public float cameraTranslationSensitivity = 2;
+    public float cameraZoomSensitivity = 10;
+    public float cameraRotationSensitivity = 2;
+    public float keysSpeed = 2.4f;
+    public float movementMultiplier = 2f;
 
-    private string mouseHorizontalAxisName = "Mouse X";
-    private string mouseVerticalAxisName = "Mouse Y";
+    private string mouseXAxisName = "Mouse X";
+    private string mouseYAxisName = "Mouse Y";
     private string scrollAxisName = "Mouse ScrollWheel";
     // Enable disable scroll when other scene
     // elements use scroll wheel
@@ -28,65 +28,60 @@ public class CameraMovement : MonoBehaviour
         _camera = GetComponent<Camera>();
     }
 
+    // Update once per frame
     void Update()
     {
 
-        float translateX = 0;
-        float translateY = 0;
+        float moveX = 0;
+        float moveY = 0;
         // Move camera along plane when middle mouse is held
         if (Input.GetMouseButton(2))
         {
-            translateY = Input.GetAxis(mouseVerticalAxisName) * translationSensitivity;
-            translateX = Input.GetAxis(mouseHorizontalAxisName) * translationSensitivity;
+            moveY = Input.GetAxis(mouseYAxisName) * cameraTranslationSensitivity;
+            moveX = Input.GetAxis(mouseXAxisName) * cameraTranslationSensitivity;
         }
         // Zoom in / out with scroll wheel
         if (scrollEnabled)
         {           
-            float zoom = Input.GetAxis(scrollAxisName) * zoomSensitiviy;
-            transform.Translate(-translateX, -translateY, zoom);
+            float zoom = Input.GetAxis(scrollAxisName) * cameraZoomSensitivity;
+            transform.Translate(-moveX, -moveY, zoom);
         }
         
-        float rotationX = 0;
-        float rotationY = 0;
+        float rotateX = 0;
+        float rotateY = 0;
         // Move camera when right mouse is held
         if (Input.GetMouseButton(1))
         {
             // Get change in mouse pos to use for rotation
-            rotationX = Input.GetAxis(mouseVerticalAxisName) * rotationSensitivity;
-            rotationY = Input.GetAxis(mouseHorizontalAxisName) * rotationSensitivity;
+            rotateX = Input.GetAxis(mouseYAxisName) * cameraRotationSensitivity;
+            rotateY = Input.GetAxis(mouseXAxisName) * cameraRotationSensitivity;
             
         }
 
         // Rotate camera to new position
-        transform.Rotate(0, rotationY, 0, Space.World);
-        transform.Rotate(-rotationX, 0, 0);
+        transform.Rotate(0, rotateY, 0, Space.World);
+        transform.Rotate(-rotateX, 0, 0);
 
         // Get new vector position for camera
-        Vector3 move = Vector3.zero;
-        float speed = navigationSpeed * (Input.GetKey(KeyCode.LeftShift) ? shiftMultiplier : 1f) * Time.deltaTime * 9.1f;
-        if (Input.GetKey(KeyCode.W))
-            move += Vector3.forward * speed;
-        if (Input.GetKey(KeyCode.S))
-            move -= Vector3.forward * speed;
-        if (Input.GetKey(KeyCode.D))
-            move += Vector3.right * speed;
-        if (Input.GetKey(KeyCode.A))
-            move -= Vector3.right * speed;
-        if (Input.GetKey(KeyCode.E))
-            move += Vector3.up * speed;
-        if (Input.GetKey(KeyCode.Q))
-            move -= Vector3.up * speed;
+        Vector3 position = Vector3.zero;
+        float speed = keysSpeed * (Input.GetKey(KeyCode.LeftShift) ? movementMultiplier : 1f) * Time.deltaTime * 9.1f;
+        if (Input.GetKey(KeyCode.W)) position += Vector3.forward * speed;
+        if (Input.GetKey(KeyCode.S)) position -= Vector3.forward * speed;
+        if (Input.GetKey(KeyCode.D)) position += Vector3.right * speed;
+        if (Input.GetKey(KeyCode.A)) position -= Vector3.right * speed;
+        if (Input.GetKey(KeyCode.E)) position += Vector3.up * speed;
+        if (Input.GetKey(KeyCode.Q)) position -= Vector3.up * speed;
 
         // Move camera to new position
-        transform.Translate(move);
+        transform.Translate(position);
 
         // When F is pressed current selected object will be 'focused'
         if (Input.GetKeyDown(KeyCode.F))
         {
             // Get vector pos of mouse
-            Vector3 mp = Input.mousePosition;
+            Vector3 mousePos = Input.mousePosition;
             // Create ray to mouse pos from camera
-            Ray ray = _camera.ScreenPointToRay(mp);
+            Ray ray = _camera.ScreenPointToRay(mousePos);
             RaycastHit hit;
             // Check for raycast hit to get object to focus
             // Check layer mask to only hit gameobjects not ground
@@ -97,26 +92,27 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    // http://answers.unity3d.com/questions/13267/how-can-i-mimic-the-frame-selected-f-camera-move-z.html
-    Bounds CalculateBounds(GameObject go)
+    // Calculate bounding box around GameObject
+    Bounds CalculateObjectBounds(GameObject go)
     {
-        // Get bounding box around selected object
-        Bounds b = new Bounds(go.transform.position, Vector3.zero);
+        // Create bounding box at selected object
+        Bounds box = new Bounds(go.transform.position, Vector3.zero);
         // Get renderer components in object
-        Object[] rList = go.GetComponentsInChildren(typeof(Renderer));
-        foreach (Renderer r in rList)
+        Object[] renderers = go.GetComponentsInChildren(typeof(Renderer));
+        foreach (Renderer r in renderers)
         {
-            b.Encapsulate(r.bounds);
+            box.Encapsulate(r.bounds);
         }
-        return b;
+        return box;
     }
 
+    // Move camera to focus on GameObject
     void FocusCameraOnGameObject(Camera c, GameObject go)
     {
         // Get bounding box around sekected object
-        Bounds b = CalculateBounds(go);
+        Bounds box = CalculateObjectBounds(go);
         // Get total size of bounding box
-        Vector3 max = b.size;
+        Vector3 max = box.size;
         // Get radius from of bounding box
         float radius = Mathf.Max(max.x, Mathf.Max(max.y, max.z));
         // Calc distance from camera
@@ -125,11 +121,11 @@ public class CameraMovement : MonoBehaviour
         c.transform.position = go.transform.position + transform.rotation * Vector3.forward * -dist;
     }
 
+    // Toggle scrolling capability of camera
     public void disableScroll()
     {
         scrollEnabled = false;
     }
-
     public void enableScroll()
     {
         scrollEnabled = true;
